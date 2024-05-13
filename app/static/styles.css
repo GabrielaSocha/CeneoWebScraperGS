@@ -39,3 +39,6 @@ footer {
     
 }
 
+.btn-dark:hover{
+    background-color: pink;
+}
