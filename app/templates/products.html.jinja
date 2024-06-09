@@ -1,7 +1,22 @@
 {% extends "base.html.jinja" %}
 {% block title %}
-    Lista produktów
+    Lista Produktów
 {% endblock title %}
 {% block content %}
-    {{products}}
+
+        <div class="d-block">
+        {% for item in products %}
+            <div style="display: block; border-top: 0px; border-bottom: 2px solid black; border-right: 0px; border-left: 0px;">
+                <div class="p-4">
+                    <a href="{{url_for('product', product_id = item.product_id)}}">{{item.product_name}}</a>
+                    <p>Liczba opinii: {{item.opinions_count}}</p>
+                    <p>Ilość zalet: {{item.pros_count}}</p>
+                    <p>Ilość wad: {{item.cons_count}}</p>
+                    <p>Średnia ocena: {{item.avarage_rating}}</p>
+                    <p>Rozkład rekomendacji: {{item.recommendation_distribution}}</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
 {% endblock content%}

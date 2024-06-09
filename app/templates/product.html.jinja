@@ -3,5 +3,16 @@
     Produkt {{product_id}}
 {% endblock title %}
 {% block content %}
-<p>To jest strona z opiniami o produkcie {{product_id}}.</p>
+    <div class="d-flex justify-content-center">
+        <ul class="overflow-auto" style="max-height: 350px; width: 100%">
+        {% for item in opinions %}
+            <li>
+                <p>Autor: {{item.author}}</p>
+                <p>Rekomendacja: {{item.recommendation}}</p>
+                <p>Ocena: {{item.rating}}</p>
+                <p>Treść opinii: {{item.content}}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 {% endblock content%}

@@ -85,19 +85,22 @@ def author():
 
 @app.route('/product/<product_id>')
 def product(product_id):
-    return render_template("product.html.jinja", product_id = product_id)
-    
-@app.route('/product/download_json/<product_id>')
+    opinions = None
+    with open(f"app/data/opinions/{product_id}.json", "r" ,encoding="UTF-8") as jf:
+        opinions = json.load(jf)
+    return render_template("product.html.jinja", product_id = product_id, opinions = opinions)
+
+@app.route('/product/download/json/<product_id>')
 def download_json(product_id):
     return send_file(f"data/opinions/{product_id}.json", "text/json", as_attachment=True)
 
-@app.route('/product/download_csv/<product_id>')
+@app.route('/product/download/csv/<product_id>')
 def download_csv(product_id):
     opinions = pd.read_json(f"app/data/opinions/{product_id}.json")
-    buffer = io.BytesIO(opinions.to_csv(sep=";", decimal=",", index = False).encode())
-    return send_file(buffer, "text/csv", as_attachment=True, download_name = f"{product_id}.csv")
+    buffer = io.BytesIO(opinions.to_csv(sep=";", decimal=",", index=False).encode())
+    return send_file(buffer, "text/csv", as_attachment=True, download_name=f"{product_id}.csv")
 
-@app.route('/product/download_xlsx/<product_id>')
+@app.route('/product/download/xlsx/<product_id>')
 def download_xlsx(product_id):
     pass
 
