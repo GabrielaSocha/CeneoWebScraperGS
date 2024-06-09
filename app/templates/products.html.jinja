@@ -15,9 +15,15 @@
                     <p>Średnia ocena: {{item.avarage_rating}}</p>
                     <p>Rozkład rekomendacji: {{item.recommendation_distribution}}</p>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-dark" href="{{url_for('download_csv', product_id = item.product_id)}}">Pobierz csv</button>
-                        <button type="submit" class="btn btn-dark" href="{{url_for('download_json', product_id = item.product_id)}}">Pobierz json</button>
-                        <button type="submit" class="btn btn-dark" href="{{url_for('download_xlsx', product_id = item.product_id)}}">Pobierz xlsx</button>
+                        <a href="{{url_for('download_csv', product_id = item.product_id)}}">
+                            <button type="submit" class="btn btn-dark mx-2" >Pobierz csv</button>
+                        </a>
+                        <a href="{{url_for('download_json', product_id = item.product_id)}}">
+                            <button type="submit" class="btn btn-dark mx-2" >Pobierz json</button>
+                        </a>
+                        <a href="{{url_for('download_xlsx', product_id = item.product_id)}}">
+                            <button type="submit" class="btn btn-dark mx-2" >Pobierz xlsx</button>
+                        </a>
                     </div>
                 </div>
             </div>
